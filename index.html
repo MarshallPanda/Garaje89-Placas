@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage '89 | Sistema</title>
+    <!-- Link para icono de acceso directo -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="theme-color" content="#000000">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fin de link para icono de acceso directo -->
+
+    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="loginScreen">
+        <div style="width: 300px; text-align: center;">
+            <h2 class="garage-title mb-4" style="color: var(--lime-accent);">GARAGE '89</h2>
+            <h4 class="text-white mb-4"><i class="bi bi-shield-lock-fill"></i> ACCESO RESTRINGIDO</h4>
+            <div class="card custom-card p-4">
+                <input type="password" id="inputLoginPass" class="form-control form-control-lg text-center mb-3"
+                    placeholder="Contraseña">
+                <button class="btn btn-racing w-100 btn-lg" id="loginBtn">ENTRAR</button>
+                <p id="loginError" class="text-danger mt-3 fw-bold small"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="appContainer" style="display: none;">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-4">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <i class="bi bi-wrench-adjustable-circle-fill me-2 text-lime" style="font-size: 1.5rem;"></i>
+                    <span>GARAGE '89</span>
+                </a>
+                <div class="d-flex align-items-center">
+                    <div class="me-3 text-secondary fw-bold">
+                        <i class="bi bi-person-circle"></i> <span id="displayUser" class="text-light">...</span>
+                        <span id="adminBadge" class="badge bg-danger ms-1" style="display:none;">ADMIN</span>
+                    </div>
+                    <button class="btn btn-outline-light btn-sm" id="logoutBtn">Salir</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <h2 class="text-center mb-5" style="color: var(--lime-accent);">SISTEMA DE DOCUMENTACIÓN</h2>
+
+            <div class="card custom-card">
+                <div class="card-header-racing"><i class="bi bi-search me-2"></i> BUSCAR POR PLACA</div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-muted"><i
+                                        class="bi bi-card-text"></i></span>
+                                <input type="text" id="searchPlate" class="form-control form-control-lg text-uppercase"
+                                    placeholder="8983-NW" maxlength="8">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-racing w-100 btn-lg" id="searchBtn"><i class="bi bi-search"></i>
+                                BUSCAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card custom-card">
+                <div class="card-header-racing"><i class="bi bi-plus-circle-fill me-2"></i> SUBIR NUEVO DOCUMENTO</div>
+                <div class="card-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="text-muted fw-bold">NÚMERO DE PLACA</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-muted"><i
+                                            class="bi bi-motorcycle"></i></span>
+                                    <input type="text" class="form-control text-uppercase" id="newPlate"
+                                        placeholder="8983-NW" maxlength="8">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="text-muted fw-bold">NOTA INICIAL</label>
+                                <textarea class="form-control" id="notes" rows="3" placeholder="Detalles..."></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-camera" id="cameraBtn"><i class="bi bi-camera-fill me-2"></i> TOMAR
+                                FOTO</button>
+                            <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+
+                            <div class="file-upload-btn" id="dropZone">
+                                <i class="bi bi-cloud-arrow-up-fill display-4 d-block mb-2"></i>
+                                <span>Clic o arrastrar imagen</span>
+                            </div>
+                            <input type="file" id="fileInput" accept="image/*" hidden>
+                            <p id="fileName" class="mt-2 text-lime small fw-bold text-center"></p>
+
+                            <button id="uploadBtn" class="btn btn-racing btn-lg w-100 mt-3 fw-bold"><i
+                                    class="bi bi-upload"></i> SUBIR</button>
+                        </div>
+                    </div>
+                    <div id="message" class="text-center mt-3 fw-bold"></div>
+                </div>
+            </div>
+
+            <div id="loading" class="text-center my-5" style="display:none">
+                <div class="spinner-border text-lime" role="status"></div>
+                <p class="text-muted small mt-2">Buscando...</p>
+            </div>
+            <div id="resultados" class="row"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
