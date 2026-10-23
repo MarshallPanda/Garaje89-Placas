@@ -82,3 +82,25 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .garage-title {
 .comment-box { background: #2c2c2c; padding: 10px; border-radius: 5px; max-height: 150px; overflow-y: auto; margin-bottom: 10px; }
 .comment-item { border-bottom: 1px solid #444; padding: 5px 0; font-size: 0.9rem; display: flex; justify-content: space-between; }
 .text-lime { color: var(--lime-accent) !important; }
+
+/* NOTAS: botón contorno lima */
+.btn-outline-lime { border: 1px solid var(--lime-accent); color: var(--lime-accent); background: transparent; }
+.btn-outline-lime:hover, .btn-outline-lime:focus { background: var(--lime-accent); color: #000; }
+.btn-outline-lime:disabled { border-color: #555; color: #777; }
+
+/* ARRASTRAR Y VISTA PREVIA */
+.file-upload-btn.drag-over { border-color: var(--lime-accent); color: var(--lime-accent); background-color: #263018; }
+.preview-img { display: block; width: 100%; max-height: 220px; object-fit: contain; background: #111; border-radius: 10px; }
+
+/* BARRAS DE USO */
+.uso-titulo { font-family: 'Russo One', sans-serif; letter-spacing: 1px; font-size: 1rem; }
+.uso-barra { height: 14px; background: #2c2c2c; border-radius: 7px; overflow: hidden; border: 1px solid #333; }
+.uso-relleno {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--lime-accent-dark), var(--lime-accent));
+    box-shadow: 0 0 8px rgba(118, 255, 3, 0.5);
+    border-radius: 7px;
+    transition: width 0.8s ease;
+}
+.uso-relleno.nivel-medio { background: linear-gradient(90deg, #ffa000, #ffca28); box-shadow: 0 0 8px rgba(255, 193, 7, 0.5); }
+.uso-relleno.nivel-alto { background: linear-gradient(90deg, #d50000, #ff5252); box-shadow: 0 0 8px rgba(255, 82, 82, 0.5); }
