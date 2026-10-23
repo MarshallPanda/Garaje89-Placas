@@ -442,7 +442,7 @@ async function cargarUso() {
         pintarBarra(usoMesBarra, usoMesTexto, delMes.data().count / LIMITE_SUBIDAS_MES);
 
         usoNota.textContent = pendientes > 0
-            ? `${nTotal} fotos registradas · ${pendientes} antiguas aún sin optimizar (uso aproximado)`
+            ? `${nTotal} fotos registradas · ${pendientes} antiguas aún sin optimizar`
             : `${nTotal} fotos registradas · todas optimizadas`;
         optimizarBtn.disabled = pendientes === 0;
     } catch (e) {
